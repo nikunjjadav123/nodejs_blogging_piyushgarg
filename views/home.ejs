@@ -1,16 +1,22 @@
-
-<%- include('./common/header') %>
-    <!-- About 1 - Bootstrap Brain Component -->
-<section class="py-3 py-md-5">
-  <div class="container">
-    <div class="row gy-3 gy-md-4 gy-lg-0 align-items-lg-center">
-        <div class="row justify-content-xl-center">
-          <div class="col-12 col-xl-11">
-            <h2 class="mb-3">Welcome</h2>
-            <p class="lead fs-4 text-secondary mb-3">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-          </div>
-      </div>
-    </div>
-  </div>
-</section>
-<%- include('./common/footer') %>
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <%- include('./common/header') %>
+      <title>Home</title>
+   </head>
+   <body>
+      <%- include('./common/nav') %>
+      <section class="py-3 py-md-5">
+         <div class="container">
+            <div class="row gy-3 gy-md-4 gy-lg-0 align-items-lg-center">
+               <div class="row justify-content-xl-center">
+                  <div class="col-12 col-xl-11">
+                     <h2 class="mb-3">Welcome</h2>
+                     <%= JSON.stringify(user); %>
+                     <p class="lead fs-4 text-secondary mb-3">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+      <%- include('./common/footer') %>

@@ -5,7 +5,7 @@ const {
 } = require('../controllers/backend_user_controllers')
 const BackEndUserRouter = express.Router();
 
-BackEndUserRouter.post("/user/api/signup",handlerSignupProcess);
-BackEndUserRouter.post("/user/api/signin",handlerSigninProcess);
+BackEndUserRouter.post("/user/signup",handlerSignupProcess);
+BackEndUserRouter.post("/user/signin",handlerSigninProcess);
 
 module.exports = BackEndUserRouter;

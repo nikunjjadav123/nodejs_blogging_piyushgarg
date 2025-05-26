@@ -13,9 +13,15 @@ async function handlerSignupProcess(req,res){
 
 async function handlerSigninProcess(req,res){
     const {email,password} = req.body;
-    const isMatched = await BloggingUserModel.matchPassword(email,password);
-    console.log(isMatched);
-    return res.redirect("/");
+    try{
+        const token = await BloggingUserModel.matchPasswordAndGenerateToken(email,password);
+        return res.cookie("uid",token).redirect("/");
+    }catch(error){
+        return res.render('login',{
+            error:'Incorrect Email or Password.',
+        });
+    }
+    
 }
 
 

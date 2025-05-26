@@ -11,24 +11,36 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-             <a class="nav-link active" aria-current="page" href="/"><i class="text-info bi-house"></i> Home</a>
+             <a class="nav-link text-white" aria-current="page" href="/"><i class="text-info bi-house"></i> Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/user/about"><i class="text-info bi-people"></i> About Us</a>
+          <a class="nav-link text-white" aria-current="page" href="/user/about"><i class="text-info bi-people"></i> About Us</a>
+        </li>
+        <% if(!locals.user){ %>
+        <li class="nav-item">
+          <a class="nav-link text-white" aria-current="page" href="/user/signup"><i class="text-info bi-person"></i> Register</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/user/signup"><i class="text-info bi-person"></i> Register</a>
+          <a class="nav-link text-white" aria-current="page" href="/user/signin"><i class="text-info bi-key"></i> Login</a>
         </li>
+        <% } %>
+        <% if(locals.user){ %>
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/user/signin"><i class="text-info bi-key"></i> Login</a>
+          <a class="nav-link text-white" href="/user/add/blog"><i class="text-info bi-journal-code"></i> Add Blog</a>
         </li>
-        <!-- <li class="nav-item">
-          <a class="nav-link" href="#">Add Blog</a>
-        </li> -->
-        <!-- <li class="nav-item">
-          <a class="nav-link" href="#">Logout</a>
-        </li> -->
+        <% } %>
       </ul>
     </div>
+    <% if(locals.user){ %>
+    <div class="dropdown">
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+        Logged in as : <%= locals.user.email %>
+      </button>
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+        <li><a class="dropdown-item" href="/user/profile">Profile</a></li>
+        <li><a class="dropdown-item" href="/user/;ogout">Logout</a></li>
+      </ul>
+    </div>
+    <% } %>
   </div>
 </nav>
