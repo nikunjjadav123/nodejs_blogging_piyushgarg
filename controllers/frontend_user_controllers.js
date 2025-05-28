@@ -1,5 +1,5 @@
-
-/* these routers will just process to redirect to particular template file nothing else */
+const mongoose = require('mongoose');
+const BloggingModel = require('../models/blog');
 
 async function handlerRedirectHomePage(req,res){
     await res.render('home',{
@@ -24,7 +24,7 @@ async function handlerRedirectAboutPage(req,res){
     });
 }
 
-async function handlerAddBlog(req,res){
+async function handlerAddBlogPage(req,res){
     await res.render('add_blog',{
         user:req.user,
     });
@@ -34,11 +34,26 @@ async function handlerLogout(req,res){
     res.clearCookie("uid").redirect("/");
 }
 
+async function handlerBlogDetailsPage(req,res){
+    try{
+        const blog = await BloggingModel.findOne({_id:req.params.blogId}).populate("createdBy");
+        if(blog){
+            return res.render('blog_details',{
+                blog:blog,
+                user:req.user,
+            });
+        }
+    }catch(error){
+        return res.render('blog_details',{error:"Blog Not Found"});
+    }
+}
+
 module.exports = {
     handlerRedirectHomePage,
     handlerRedirectSignupPage,
     handlerRedirectSigninPage,
     handlerRedirectAboutPage,
     handlerLogout,
-    handlerAddBlog
+    handlerAddBlogPage,
+    handlerBlogDetailsPage
 }

@@ -12,18 +12,62 @@
                <div class="row justify-content-xl-center">
                   <div class="col-12 col-xl-11">
                      <h2 class="mb-3">Add Blog</h2>
+                     <p class="lead fs-4 text-secondary mb-3">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
                   </div>
                </div>
             </div>
-            <form>
-               <div class="mb-3">
-                  <div class="form-group">
-                     <label for="exampleInputEmail1">Blog Title</label>
-                     <input type="text" class="form-control" name="title" id="exampleInputEmail1" aria-describedby="title" placeholder="Enter email">
-                     <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+         </div>
+      </section>
+      <section class="vh-50 mx-3 my-3">
+         <div class="container h-50">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+               <div class="col-xl-9">
+                  <div class="card" style="border-radius: 15px;">
+                     <div class="card-body">
+                        <form method="post" action="/user/add/blog" enctype="multipart/form-data">
+                           <div class="row align-items-center pt-4 pb-3">
+                              <div class="col-md-3 ps-5">
+                                 <h6 class="mb-0">Blog Title</h6>
+                              </div>
+                              <div class="col-md-9 pe-5">
+                                 <input type="text" name="title" class="form-control form-control-lg" />
+                              </div>
+                           </div>
+                           <hr class="mx-n3">
+                           <div class="row align-items-center py-3">
+                              <div class="col-md-3 ps-5">
+                                 <h6 class="mb-0">Blog Content</h6>
+                              </div>
+                              <div class="col-md-9 pe-5">
+                                 <textarea class="form-control" name="body" rows="3" id="add_blog"></textarea>
+                                 <script>
+                                       CKEDITOR.replace( 'add_blog' );
+                                 </script>
+                              </div>
+                           </div>
+                           <hr class="mx-n3">
+                           <div class="row align-items-center py-3">
+                              <div class="col-md-3 ps-5">
+                                 <h6 class="mb-0">Blog Cover Photo</h6>
+                              </div>
+                              <div class="col-md-9 pe-5">
+                                 <input class="form-control form-control-lg" id="formFileLg" type="file" name="coverImage"/>
+                              </div>
+                              <% if(locals.error){ %>
+                                 <div class="alert alert-danger text-center" role="alert">
+                                    <%= locals.error %>
+                                 </div>
+                              <% } %>
+                           </div>
+                           <hr class="mx-n3">
+                           <div class="px-5 py-4">
+                              <button type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-lg">Save</button>
+                           </div>
+                        </form>
+                     </div>
                   </div>
                </div>
-            </form>
+            </div>
          </div>
       </section>
       <%- include('./common/footer') %>

@@ -12,11 +12,34 @@
                <div class="row justify-content-xl-center">
                   <div class="col-12 col-xl-11">
                      <h2 class="mb-3">Welcome</h2>
-                     <%= JSON.stringify(user); %>
                      <p class="lead fs-4 text-secondary mb-3">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
                   </div>
                </div>
             </div>
+            <% if(locals.user){ %>
+            <% if(Array.isArray(blogs)){ %>
+            <div class="container">
+               <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+                  <% blogs.map((blogs,index)=>{ %>
+                  <div class="col">
+                     <div class="card">
+                        <img src="public/<%= blogs.coverImage %>" class="card-img-top img-fluid" alt="Image 1">
+                        <div class="card-body">
+                           <h5 class="card-title"><%= blogs.title %></h5>
+                           <p class="card-text"><%= blogs.body.slice(0,100); %>...</p>
+                           <a href="user/blog/<%= blogs._id %>" class="btn btn-primary">Read More</a>
+                        </div>
+                     </div>
+                  </div>
+                  <%  }); %>
+               </div>
+            </div>
+            <% } %>
+            <% }else{ %>
+            <div class="alert alert-danger text-center" role="alert">
+               Only Logged In Users Can View All Blog Posts.
+            </div>
+            <% } %>
          </div>
       </section>
       <%- include('./common/footer') %>

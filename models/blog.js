@@ -13,9 +13,9 @@ const blogSchema = new mongoose.Schema({
         type:String,
         required:false
     },
-    createdBy:{
-        type: Schema.Types.ObjectId,
-        ref:"user_bloggings"
+    'createdBy':{
+        type: mongoose.Schema.Types.ObjectId,
+        ref:"user_blogging"
     }
 },{timeseries:true});
 

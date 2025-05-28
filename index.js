@@ -1,9 +1,10 @@
 const dotenv = require("dotenv");
 const path = require('path');
 const express = require("express");
-var cookieParser = require('cookie-parser')
+var cookieParser = require('cookie-parser');
 const FrontEndUserRouter = require("./routes/frontend_user_routes");
 const BackEndUserRouter = require("./routes/backend_user_routes");
+const Blog = require("./models/blog");
 
 const {connectMongoDB} = require("./connection");
 const { chckforAuthenticationCookie } = require("./middleware/authentication");
@@ -17,14 +18,17 @@ app.use('/public', express.static('./public'));
 app.use('/bootstrap_css',express.static(path.join(__dirname,'node_modules','bootstrap','dist','css')));
 app.use('/bootstrap_js',express.static(path.join(__dirname,'node_modules','bootstrap','dist','js')));
 app.use('/bootstrap_icons',express.static(path.join(__dirname,'node_modules','bootstrap-icons','font')));
+
 app.use(express.urlencoded({extended:false}));
 app.use(cookieParser());
 
 app.use(chckforAuthenticationCookie);
 
-app.get('/',(req,res) => {
+app.get('/',async(req,res) => {
+    const allBlogs = await Blog.find({}).sort('createdAt');
     res.render('home',{
         user:req.user,
+        blogs:allBlogs,
     })
 });
 app.use("/",FrontEndUserRouter);
